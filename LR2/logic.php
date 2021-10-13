@@ -26,7 +26,7 @@ if ($_GET["costFrom"]) {
         echo "Ошибка, переменная не число<br>";
     }
 }
-if ($_GET["costTo"] != 0) {
+if ($_GET["costTo"]) {
     if (filter_var($_GET["costTo"], FILTER_VALIDATE_INT)) {
         $query .= " AND dishs.cost <= " . $_GET["costTo"];
     } else {
