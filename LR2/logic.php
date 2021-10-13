@@ -19,14 +19,14 @@ if ($_GET["id_restaraunt"] != "0") {
 if (isset($_GET['recipe'])) {
     $query .= " AND recipe LIKE '%" . mysqli_real_escape_string($mysql, $_GET["recipe"]) . "%'";
 }
-if (isset($_GET["costFrom"])) {
+if ($_GET["costFrom"]) {
     if (filter_var($_GET["costFrom"], FILTER_VALIDATE_INT)) {
         $query .= " AND dishs.cost >= " . $_GET["costFrom"];
     } else {
         echo "Ошибка, переменная не число<br>";
     }
 }
-if (isset($_GET["costTo"])) {
+if ($_GET["costTo"] != 0) {
     if (filter_var($_GET["costTo"], FILTER_VALIDATE_INT)) {
         $query .= " AND dishs.cost <= " . $_GET["costTo"];
     } else {
