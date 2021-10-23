@@ -9,7 +9,7 @@ if ($mysql->connect_errno) exit("ошибка подключения к БД");
 $mysql->set_charset("utf8");
 
 $query = "SELECT restaraunts.title, dishs.id_restaraunt, dishs.name, dishs.img_path, dishs.recipe, dishs.cost FROM dishs INNER JOIN restaraunts ON dishs.id_restaraunt = restaraunts.id WHERE dishs.name = dishs.name";
-
+if (isset($_GET['name']) || isset($_GET['recipe']) || isset($_GET["id_restaraunt"]) || isset($_GET["costTo"]) || isset($_GET["costFrom"])) {
 if (isset($_GET['name']) || isset($_GET['id_restaraunt']) || isset($_GET['costTo']) || isset($_GET['costFrom']) || isset($_GET['recipe'])){
 if (isset($_GET['name'])) {
     $query .= " AND name LIKE '%" . mysqli_real_escape_string($mysql, $_GET["name"]) . "%'";
@@ -33,6 +33,7 @@ if ($_GET["costTo"]) {
     } else {
         echo "Ошибка, переменная не число<br>";
     }
+}
 }
 }
 
